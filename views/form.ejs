@@ -1,0 +1,54 @@
+<form action="/InsertBlog" method="post" enctype="multipart/form-data">
+    <table border="2">
+        <input type="hidden" value="<%=single.id%>" name="editid">
+        <tr>
+            <td>Title:-</td>
+            <td><input type="text" name="name" value="<%=single.name%>"></td>
+        </tr>
+        <tr>
+            <td>Description:-</td>
+            <td><input type="text" name="description" value="<%=single.description%>"></td>
+        </tr>
+        <tr>
+            <td>Image :-</td>
+            <td><input type="file" name="image"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <% if(single) { %>
+                    <input type="submit" value="Edit">
+                    <% } else{ %>
+                        <input type="submit">
+                        <% } %>
+            </td>
+        </tr>
+    </table>
+</form>
+
+<table border="2">
+    <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Image</th>
+        <th>Action</th>
+    </tr>
+
+    <% data.map((val)=>{
+        const {id,name,image,description}=val %>
+        <tr>
+            <td>
+                <%=name%>
+            </td>
+            <td>
+                <%=description%>
+            </td>
+            <td>
+                <img src="<%=image%>" width="100">
+            </td>
+            <td><a href="/DlteBlog?id=<%=id%>">Delete</a> ||
+                <a href="/EditBlog?id=<%=id%>">Edit</a>
+            </td>
+        </tr>
+        <%})%>
+</table>
